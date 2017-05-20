@@ -29,7 +29,7 @@ export class ModalEditPage {
     public toastCtrl: ToastController,
     public sqlStorage: SqlStorage,
     ) { 
-
+    this.roupa = this.params.get("roupa");
 	}
 
   public update(id,value,statusCesto,imgRoupa){

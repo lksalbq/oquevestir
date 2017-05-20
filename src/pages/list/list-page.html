@@ -55,7 +55,7 @@
         </ion-avatar>
 
           {{roupa?.descricao}}
-          <p>{{roupa?.statusCesto}}</p>
+          <p>{{roupa?.statusCestoDescription}}</p>
         <ion-note item-right>
           <ion-icon name="ios-arrow-dropright-outline" >
             
@@ -63,7 +63,7 @@
         </ion-note>
       </ion-item>
       <ion-item-options side="right">
-          <button ion-button (click)="updateModal()">
+          <button ion-button (click)="updateModal(roupa)">
              <ion-icon name="archive"></ion-icon>
               Atualizar
           </button>

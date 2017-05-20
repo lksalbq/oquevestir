@@ -78,7 +78,8 @@ export class ListPage {
           this.roupas.push({
              id: id,
              descricao: descricao,
-             statusCesto: status,
+             statusCestoDescription: status,
+             statusCesto: statusCesto,
              imgRoupa: imgRoupa
           });
           
@@ -95,8 +96,8 @@ export class ListPage {
     this.getDataList();
   }
 
-  public updateModal(){
-    let modal = this.modalCtrl.create(ModalEditPage);
+  public updateModal(roupa){
+    let modal = this.modalCtrl.create(ModalEditPage, {"roupa": roupa});
     modal.present();
   }
 

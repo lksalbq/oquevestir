@@ -54,7 +54,7 @@
       </ion-icon>
     </ion-item>
     <ion-item>  
-      <img [(ngModel)]="roupa.foto" src="{{base64Image}}" *ngIf="base64Image" width="150px" height="150px" name="foto" />
+      <img [(ngModel)]="roupa.imgRoupa" src="{{roupa.imgRoupa}}" *ngIf="roupa.imgRoupa" width="150px" height="150px" name="foto" />
     </ion-item>
     <button ion-button block type="submit" >Cadastrar</button>
   </form>
