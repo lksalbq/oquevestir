@@ -4,9 +4,10 @@ import { IonicApp, IonicErrorHandler, IonicModule } from 'ionic-angular';
 import { IonicStorageModule } from '@ionic/storage';
 import { MyApp } from './app.component';
 import { HomePage } from '../pages/home/home';
-import { ListRoupa } from '../pages/list/list';
-import { ModalListPage} from '../pages/list/modal-list-page';
+import { Roupa } from '../pages/list/roupa';
+import { ListPage} from '../pages/list/list-page';
 import {ModalRegisterPage} from '../pages/list/modal-register-page';
+import {ModalEditPage} from '../pages/list/modal-edit-page';
 import { Parte } from '../pages/parte/parte';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
@@ -17,10 +18,11 @@ import { SqlStorage } from '../providers/sql-storage';
   declarations: [
     MyApp,
     HomePage,
-    ListRoupa,
+    Roupa,
     Parte,
-    ModalListPage,
-    ModalRegisterPage
+    ListPage,
+    ModalRegisterPage,
+    ModalEditPage
   ],
   imports: [
     BrowserModule,
@@ -31,10 +33,11 @@ import { SqlStorage } from '../providers/sql-storage';
   entryComponents: [
     MyApp,
     HomePage,
-    ListRoupa,
+    Roupa,
     Parte,
-    ModalListPage,
-    ModalRegisterPage
+    ListPage,
+    ModalRegisterPage,
+    ModalEditPage
   ],
   providers: [
     StatusBar,

@@ -63,6 +63,17 @@ export class SqlStorage {
         });
     }
 
+        /** GET the value in the database identified by the given key. */
+    update(id: number,value: string,statusCesto: boolean,imgRoupa: string): Promise<any> {
+        return this.query('update _roupas set value = ?,status_cesto = ?,img_roupa = ? where id = ?', [value,statusCesto,imgRoupa,id])
+        .then(data => {
+            if (data.res.rows.length > 0) {
+                return data.res.rows.item(0).value;
+            }
+        });
+    }
+
+
     /** SET the value in the database for the given key. */
     set(value: string, statusCesto: boolean, imgRoupa: string): Promise<any> {
         return this.query('insert into _roupas(id,value,status_cesto,img_roupa) values (?,?,?,?)', [null,value,statusCesto,imgRoupa]);

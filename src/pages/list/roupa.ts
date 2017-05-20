@@ -1,25 +1,27 @@
 import { Component } from '@angular/core';
 import { NavController} from 'ionic-angular';
 import {ModalRegisterPage} from '../list/modal-register-page';
-import {ModalListPage} from '../list/modal-list-page';
+import {ListPage} from '../list/list-page';
 import { ModalController, NavParams } from 'ionic-angular';
 
 @Component({
-  selector: 'page-list',
-  templateUrl: 'list.html'
+  selector: 'roupa',
+  templateUrl: 'roupa.html'
 })
-export class ListRoupa {
+export class Roupa {
+
   constructor(public modalCtrl: ModalController,public navCtrl: NavController, public navParams: NavParams) {
     
   }
 
-  openModalList() {
+  openList() {
 
-    let modal = this.modalCtrl.create(ModalListPage);
-    modal.present();
+      //push another page onto the history stack
+      //causing the nav controller to animate the new page in
+      this.navCtrl.push(ListPage);
   }
 
-   openModalRegister() {
+  openModalRegister() {
 
     let modal = this.modalCtrl.create(ModalRegisterPage);
     modal.present();

@@ -39,9 +39,9 @@
 <ion-header>
   <ion-navbar>
     <ion-buttons start>
-      <button ion-button (click)="dismiss()">
+      <!-- <button ion-button (click)="dismiss()">
         <ion-icon name="md-close" showWhen="android,windows"></ion-icon>
-      </button>
+      </button> -->
     </ion-buttons>
     <ion-title>Lista de Roupas</ion-title>
   </ion-navbar>
@@ -63,7 +63,7 @@
         </ion-note>
       </ion-item>
       <ion-item-options side="right">
-          <button ion-button >
+          <button ion-button (click)="updateModal()">
              <ion-icon name="archive"></ion-icon>
               Atualizar
           </button>
