@@ -70,9 +70,9 @@ export class ListPage {
           let status;
 
           if(statusCesto === "true"){
-            status = "Roupa limpa.";
+            status = "Sujo";
           }else{
-            status = "Roupa suja.";
+            status = "Limpo";
           }
 
           this.roupas.push({
