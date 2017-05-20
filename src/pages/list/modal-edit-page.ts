@@ -16,7 +16,7 @@ import {SqlStorage} from '../../providers/sql-storage';
 export class ModalEditPage {
 	
   options:any;
-  roupa = {};
+  private roupa = {};
   public base64Image: string;
 
   constructor( 
@@ -30,10 +30,11 @@ export class ModalEditPage {
     public sqlStorage: SqlStorage,
     ) { 
     this.roupa = this.params.get("roupa");
-	}
+  }
 
-  public update(id,value,statusCesto,imgRoupa){
-    this.sqlStorage.update(id,value,statusCesto,imgRoupa);
+  public update(){
+    this.sqlStorage.update(this.roupa["id"],this.roupa["descricao"],this.roupa["statusCesto"],this.roupa["imgRoupa"]);
+    this.dismiss();
     this.presentToast();
   }
 
@@ -48,7 +49,7 @@ export class ModalEditPage {
     }
     this.camera.getPicture(this.options)
       .then((imageData)=>{
-          this.base64Image = "data:image/jpeg;base64," + imageData;
+          this.roupa["imgRoupa"] = "data:image/jpeg;base64," + imageData;
       })
   }
   presentToast() {

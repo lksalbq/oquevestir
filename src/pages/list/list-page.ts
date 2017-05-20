@@ -14,7 +14,7 @@ import {ModalEditPage} from '../list/modal-edit-page';
 export class ListPage {
   // selectedItem: any;
   // icons: string[];
-  public roupas: Array<Object>;
+  private roupas: Array<Object>;
 
   constructor(
     public platform: Platform,

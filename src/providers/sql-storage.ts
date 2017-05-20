@@ -65,12 +65,7 @@ export class SqlStorage {
 
         /** GET the value in the database identified by the given key. */
     update(id: number,value: string,statusCesto: boolean,imgRoupa: string): Promise<any> {
-        return this.query('update _roupas set value = ?,status_cesto = ?,img_roupa = ? where id = ?', [value,statusCesto,imgRoupa,id])
-        .then(data => {
-            if (data.res.rows.length > 0) {
-                return data.res.rows.item(0).value;
-            }
-        });
+        return this.query('update _roupas set value = ?,status_cesto = ?,img_roupa = ? where id = ?', [value,statusCesto,imgRoupa,id]);
     }
 
 
