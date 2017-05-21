@@ -100,6 +100,10 @@ export class SqlStorage {
         return this.query('delete from _partes where id = ?', [id]);
     }
 
+    /** REMOVE parte in the database for the given key. */
+    removeCategoria(id: number): Promise<any> {
+        return this.query('delete from _categorias where id = ?', [id]);
+    }
 
     getAll(): Promise<any>{
     	return this.query('SELECT * from _roupas',[]).then(data => {

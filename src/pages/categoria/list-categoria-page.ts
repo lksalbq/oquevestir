@@ -58,11 +58,11 @@ export class ListCategoriaPage {
     })
   }
 
-  // public remove(id){
-  //   this.sqlStorage.removeParte(id);
-  //   this.removeToast();
-  //   this.getDataList();
-  // }
+  public remove(id){
+    this.sqlStorage.removeCategoria(id);
+    this.removeToast();
+    this.getDataList();
+  }
 
   // public updateModal(parte){
   //   let modal = this.modalCtrl.create(ModalEditParte, {"parte": parte});
@@ -85,7 +85,7 @@ export class ListCategoriaPage {
         {
           text: 'Excluir',
           handler: () => {
-            //this.remove(id);
+            this.remove(id);
           }
         }
       ]
