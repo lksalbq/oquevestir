@@ -24,6 +24,7 @@ export class SqlStorage {
     	//this.query('ALTER TABLE _roupas ADD COLUMN img_roupa text');
         this.query('CREATE TABLE IF NOT EXISTS _roupas (id integer not null, value text not null, status_cesto boolean not null,img_roupa text, PRIMARY KEY(id))')
         this.query('CREATE TABLE IF NOT EXISTS _partes (id integer not null, nome text not null, descricao text not null, PRIMARY KEY(id))')
+        this.query('CREATE TABLE IF NOT EXISTS _categorias(id integer not null, nome text not null, descricao text not null, PRIMARY KEY(id))')
         .catch(err => {
             console.error('Unable to create initial storage tables', err.tx, err.err);
         });
@@ -85,6 +86,10 @@ export class SqlStorage {
         return this.query('insert into _partes(id,nome,descricao) values (?,?,?)', [null,nome,descricao]);
     }
 
+    /** SET the values in the database for the given key. */
+    setCategoria(nome: string, descricao: string): Promise<any> {
+        return this.query('insert into _categorias(id,nome,descricao) values (?,?,?)', [null,nome,descricao]);
+    }
     /** REMOVE roupa in the database for the given key. */
     remove(id: number): Promise<any> {
         return this.query('delete from _roupas where id = ?', [id]);

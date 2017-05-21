@@ -6,6 +6,7 @@ import {SqlStorage} from '../providers/sql-storage';
 import { HomePage } from '../pages/home/home';
 import { Roupa } from '../pages/list/roupa';
 import {Parte} from '../pages/parte/parte';
+import {Categoria} from '../pages/categoria/categoria';
 @Component({
   templateUrl: 'app.html'
 })
@@ -26,7 +27,8 @@ export class MyApp {
     this.pages = [
       { title: 'Inicio', component: HomePage },
       { title: 'Roupas', component: Roupa },
-      { title: 'Parte', component: Parte }
+      { title: 'Parte', component: Parte },
+       { title: 'Categoria', component: Categoria}
     ];
 
   }
