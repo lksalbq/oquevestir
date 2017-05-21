@@ -14,6 +14,7 @@ import {ListPartePage} from '../pages/parte/list-parte-page';
 import {ModalEditParte} from '../pages/parte/modal-edit-parte';
 import { Categoria } from '../pages/categoria/categoria';
 import {ModalCategoriaRegister} from '../pages/categoria/modal-categoria-register';
+import {ListCategoriaPage} from '../pages/categoria/list-categoria-page';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { SQLite } from '@ionic-native/sqlite';
@@ -32,7 +33,8 @@ import { SqlStorage } from '../providers/sql-storage';
     ListPartePage,
     ModalEditParte,
     Categoria,
-    ModalCategoriaRegister
+    ModalCategoriaRegister,
+    ListCategoriaPage
   ],
   imports: [
     BrowserModule,
@@ -52,7 +54,8 @@ import { SqlStorage } from '../providers/sql-storage';
     ListPartePage,
     ModalEditParte,
     Categoria,
-    ModalCategoriaRegister
+    ModalCategoriaRegister,
+    ListCategoriaPage
   ],
   providers: [
     StatusBar,

@@ -122,4 +122,14 @@ export class SqlStorage {
         });
 
     }
+
+    getAllCategorias(): Promise<any>{
+        return this.query('SELECT * from _categorias',[]).then(data => {
+            if (data.res.rows.length > 0) {
+                return data;
+            }else{
+                return 0;
+            }
+        });
+    }
 }

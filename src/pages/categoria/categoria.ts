@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams,ModalController } from 'ionic-angular';
 import {ModalCategoriaRegister} from '../categoria/modal-categoria-register';
+import {ListCategoriaPage} from '../categoria/list-categoria-page';
 /**
  * Generated class for the Categoria page.
  *
@@ -17,12 +18,12 @@ export class Categoria {
   constructor(public modalCtrl: ModalController, public navCtrl: NavController, public navParams: NavParams) {
   }
 
-  // openList() {
+  openList() {
 
-  //     //push another page onto the history stack
-  //     //causing the nav controller to animate the new page in
-  //     this.navCtrl.push(ListPartePage);
-  // }
+      //push another page onto the history stack
+      //causing the nav controller to animate the new page in
+      this.navCtrl.push(ListCategoriaPage);
+  }
 
   openModalRegister() {
 

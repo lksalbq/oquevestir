@@ -35,7 +35,6 @@ export class ModalCategoriaRegister {
     this.presentToast();
   }
   
-
   presentToast() {
     let toast = this.toastCtrl.create({
       message: 'Categoria cadastrada com sucesso!',
