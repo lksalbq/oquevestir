@@ -3,7 +3,7 @@
 <ion-navbar>
   <ion-toolbar>
     <ion-title>
-      Atualizar Parte
+      Atualizar Categoria
     </ion-title>
     <ion-buttons start>
       <button ion-button (click)="dismiss()">
@@ -19,10 +19,10 @@
 
    <form (ngSubmit)="update()">
     <ion-item>
-      <ion-input  [(ngModel)]="parte.nome" name="nome" type="text"></ion-input>
+      <ion-input  [(ngModel)]="categoria.nome" name="nome" type="text"></ion-input>
     </ion-item>
     <ion-item>
-      <ion-input  [(ngModel)]="parte.descricao" name="descricao" type="text"></ion-input>
+      <ion-input  [(ngModel)]="categoria.descricao" name="descricao" type="text"></ion-input>
     </ion-item>
     <button ion-button block type="submit" >Atualizar</button>
   </form>

@@ -5,7 +5,7 @@ import {SqlStorage} from '../../providers/sql-storage';
 import { ToastController } from 'ionic-angular';
 import { AlertController } from 'ionic-angular';
 import { LoadingController } from 'ionic-angular';
-//import {ModalEditParte} from '../parte/modal-edit-parte';
+import {ModalEditCategoria} from '../categoria/modal-edit-categoria';
 
 @Component({
   templateUrl: 'list-categoria-page.html'
@@ -64,10 +64,10 @@ export class ListCategoriaPage {
     this.getDataList();
   }
 
-  // public updateModal(parte){
-  //   let modal = this.modalCtrl.create(ModalEditParte, {"parte": parte});
-  //   modal.present();
-  // }
+  public updateModal(categoria){
+    let modal = this.modalCtrl.create(ModalEditCategoria, {"categoria": categoria});
+    modal.present();
+  }
 
   removeConfirm(id) {
     let alert = this.alertCtrl.create({

@@ -75,6 +75,11 @@ export class SqlStorage {
         return this.query('update _partes set nome = ?,descricao = ? where id = ?', [nome,descricao,id]);
     }
 
+    /** UPDATE partes in the database for the given key **/ 
+    updateCategoria(id: number,nome: string,descricao: string): Promise<any> {
+        return this.query('update _categorias set nome = ?,descricao = ? where id = ?', [nome,descricao,id]);
+    }
+
 
     /** SET the values in the database for the given key. */
     set(value: string, statusCesto: boolean, imgRoupa: string): Promise<any> {
