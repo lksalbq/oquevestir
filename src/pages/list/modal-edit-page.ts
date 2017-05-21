@@ -30,11 +30,9 @@ export class ModalEditPage {
     public sqlStorage: SqlStorage
     ) { 
     this.roupa = this.params.get("roupa");
-    console.log("status desse carai >>>"+this.roupa["statusCesto"]);
   }
 
   public update(){
-    console.log("Status do cesto >>"+this.roupa["statusCesto"]);
     this.sqlStorage.update(this.roupa["id"],this.roupa["descricao"],this.roupa["statusCesto"],this.roupa["imgRoupa"]);
     this.dismiss();
     this.presentToast();

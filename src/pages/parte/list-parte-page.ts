@@ -5,7 +5,7 @@ import {SqlStorage} from '../../providers/sql-storage';
 import { ToastController } from 'ionic-angular';
 import { AlertController } from 'ionic-angular';
 import { LoadingController } from 'ionic-angular';
-
+import {ModalEditParte} from '../parte/modal-edit-parte';
 @Component({
   templateUrl: 'list-parte-page.html'
 })
@@ -32,7 +32,7 @@ export class ListPartePage {
   }
   presentLoading() {
     let loader = this.loadingCtrl.create({
-      duration: 3000
+      duration: 1000
     });
     loader.present();
   }
@@ -63,10 +63,10 @@ export class ListPartePage {
     this.getDataList();
   }
 
-  // public updateModal(roupa){
-  //   let modal = this.modalCtrl.create(ModalEditPage, {"roupa": roupa});
-  //   modal.present();
-  // }
+  public updateModal(parte){
+    let modal = this.modalCtrl.create(ModalEditParte, {"parte": parte});
+    modal.present();
+  }
 
   removeConfirm(id) {
     let alert = this.alertCtrl.create({

@@ -64,27 +64,33 @@ export class SqlStorage {
         });
     }
 
+    /** UPDATE roupas in the database for the given key */ 
     update(id: number,value: string,statusCesto: boolean,imgRoupa: string): Promise<any> {
         return this.query('update _roupas set value = ?,status_cesto = ?,img_roupa = ? where id = ?', [value,statusCesto,imgRoupa,id]);
     }
 
+    /** UPDATE partes in the database for the given key **/ 
+    updateParte(id: number,nome: string,descricao: string): Promise<any> {
+        return this.query('update _partes set nome = ?,descricao = ? where id = ?', [nome,descricao,id]);
+    }
 
-    /** SET the value in the database for the given key. */
+
+    /** SET the values in the database for the given key. */
     set(value: string, statusCesto: boolean, imgRoupa: string): Promise<any> {
         return this.query('insert into _roupas(id,value,status_cesto,img_roupa) values (?,?,?,?)', [null,value,statusCesto,imgRoupa]);
     }
 
-    /** SET the value in the database for the given key. */
+    /** SET the values in the database for the given key. */
     setParte(nome: string, descricao: string): Promise<any> {
         return this.query('insert into _partes(id,nome,descricao) values (?,?,?)', [null,nome,descricao]);
     }
 
-    /** REMOVE the value in the database for the given key. */
+    /** REMOVE roupa in the database for the given key. */
     remove(id: number): Promise<any> {
         return this.query('delete from _roupas where id = ?', [id]);
     }
 
-        /** REMOVE the value in the database for the given key. */
+    /** REMOVE parte in the database for the given key. */
     removeParte(id: number): Promise<any> {
         return this.query('delete from _partes where id = ?', [id]);
     }
