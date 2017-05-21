@@ -1,5 +1,8 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { IonicPage, NavController, NavParams,ModalController } from 'ionic-angular';
+import {ModalParteRegister} from '../parte/modal-parte-register';
+import {ListPartePage} from '../parte/list-parte-page';
+
 
 /**
  * Generated class for the Parte page.
@@ -14,11 +17,20 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 })
 export class Parte {
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  constructor(public modalCtrl: ModalController,public navCtrl: NavController, public navParams: NavParams) {
   }
 
-  ionViewDidLoad() {
-    console.log('ionViewDidLoad Parte');
+   openList() {
+
+      //push another page onto the history stack
+      //causing the nav controller to animate the new page in
+      this.navCtrl.push(ListPartePage);
+  }
+
+  openModalRegister() {
+
+    let modal = this.modalCtrl.create(ModalParteRegister);
+    modal.present();
   }
 
 }

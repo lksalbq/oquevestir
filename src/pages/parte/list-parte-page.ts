@@ -5,16 +5,14 @@ import {SqlStorage} from '../../providers/sql-storage';
 import { ToastController } from 'ionic-angular';
 import { AlertController } from 'ionic-angular';
 import { LoadingController } from 'ionic-angular';
-import {ModalEditPage} from '../list/modal-edit-page';
 
 @Component({
-  templateUrl: 'list-page.html'
+  templateUrl: 'list-parte-page.html'
 })
 
-export class ListPage {
-  // selectedItem: any;
-  // icons: string[];
-  private roupas: Array<Object>;
+export class ListPartePage {
+
+  private partes: Array<Object>;
 
   constructor(
     public platform: Platform,
@@ -27,30 +25,11 @@ export class ListPage {
     public loadingCtrl: LoadingController,
     public modalCtrl: ModalController
   ) {
-   
-    // this.selectedItem = navParams.get('roupa');
 
-    // // this.icons = ['flask', 'wifi', 'beer', 'football', 'basketball', 'paper-plane',
-    // // 'american-football', 'boat', 'bluetooth', 'build'];
-    // var roupasSize = this.getLastId()
-    // this.roupas = [];
-    // for (let i = 0; i <= roupasSize; i++) {
-    //   this.getDataList(i);
-    //   this.roupas.push({
-    //     descricao: "this.roupa[0].descricao",
-    //     id: i.toString(),
-    //   });
-    // }
      this.getDataList()
      this.presentLoading()
+  
   }
-
-  //  itemTapped(event, roupa) {
-  //   // That's right, we're pushing to ourselves!
-  //   this.navCtrl.push(ModalListPage, {
-  //     roupa: roupa
-  //   });
-  // }
   presentLoading() {
     let loader = this.loadingCtrl.create({
       duration: 3000
@@ -58,32 +37,19 @@ export class ListPage {
     loader.present();
   }
   public getDataList() {
-    this.sqlStorage.getAll().then(data =>{
-      this.roupas = [];
+    this.sqlStorage.getAllPartes().then(data =>{
+      this.partes = [];
       let hasData = data == 0 ? 0 : 1;
       if (hasData >= 1){
         for(let i = 0; i <= data.res.rows.length; i++){
-
           let id = data.res.rows.item(i).id;
-          let descricao = data.res.rows.item(i).value.toString();
-          let statusCesto = data.res.rows.item(i).status_cesto;
-          let imgRoupa = data.res.rows.item(i).img_roupa;
-          let status;
-
-          if(statusCesto === "true"){
-            status = "Sujo";
-          }else{
-            status = "Limpo";
-          }
-
-          this.roupas.push({
+          let nome = data.res.rows.item(i).nome;
+          let descricao = data.res.rows.item(i).descricao;
+          this.partes.push({
              id: id,
-             descricao: descricao,
-             statusCestoDescription: status,
-             statusCesto: statusCesto,
-             imgRoupa: imgRoupa
+             nome: nome,
+             descricao: descricao
           });
-          
         }
       }else{
         this.warningToast();
@@ -92,20 +58,20 @@ export class ListPage {
   }
 
   public remove(id){
-    this.sqlStorage.remove(id);
+    this.sqlStorage.removeParte(id);
     this.removeToast();
     this.getDataList();
   }
 
-  public updateModal(roupa){
-    let modal = this.modalCtrl.create(ModalEditPage, {"roupa": roupa});
-    modal.present();
-  }
+  // public updateModal(roupa){
+  //   let modal = this.modalCtrl.create(ModalEditPage, {"roupa": roupa});
+  //   modal.present();
+  // }
 
   removeConfirm(id) {
     let alert = this.alertCtrl.create({
       title: 'Confirmar Exclusão',
-      message: 'Você realmente deseja excluir essa roupa?',
+      message: 'Você realmente deseja excluir essa parte?',
       enableBackdropDismiss: true,
       buttons: [
         {
@@ -128,17 +94,18 @@ export class ListPage {
 
   public warningToast() {
     let toast = this.toastCtrl.create({
-      message: 'Não existem roupas cadastradas!',
+      message: 'Não existem partes cadastradas!',
       duration: 3000,
       showCloseButton: true,
       closeButtonText: "Ok"
     });
     toast.present();
+    this.dismiss();
   }
 
   public removeToast(){
     let toast = this.toastCtrl.create({
-      message: 'Roupa Excluida com sucesso!',
+      message: 'Parte Excluida com sucesso!',
       duration: 3000,
       showCloseButton: true,
       closeButtonText: "Ok"

@@ -1,0 +1,31 @@
+<ion-header>
+  <ion-navbar>
+    <ion-buttons start>
+    </ion-buttons>
+    <ion-title>Lista de Partes</ion-title>
+  </ion-navbar>
+</ion-header>
+<ion-content>      
+  <ion-list>
+    <ion-item-sliding *ngFor="let parte of partes">
+      <ion-item  class="item item-block item-md" >
+          {{parte?.nome}}
+          <p>{{parte?.descricao}}</p>
+        <ion-note item-right>
+          <ion-icon name="ios-arrow-dropright-outline">
+          </ion-icon>
+        </ion-note>
+      </ion-item>
+      <ion-item-options side="right">
+          <button ion-button>
+             <ion-icon name="archive"></ion-icon>
+              Atualizar
+          </button>
+          <button ion-button color="danger" (click)="removeConfirm(parte.id)">
+              <ion-icon name="ios-close-circle-outline"></ion-icon>
+              Remover
+          </button>
+      </ion-item-options>     
+    </ion-item-sliding>
+  </ion-list>
+</ion-content>

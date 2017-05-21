@@ -1,0 +1,29 @@
+
+<ion-header>
+<ion-navbar>
+  <ion-toolbar>
+    <ion-title>
+      Cadastro de Parte
+    </ion-title>
+    <ion-buttons start>
+      <button ion-button (click)="dismiss()">
+        <span ion-text color="primary" showWhen="ios">Cancel</span>
+        <ion-icon name="md-close" showWhen="android,windows"></ion-icon>
+      </button>
+      <button ion-button back-button (click)="dismiss()"> </button>        
+    </ion-buttons>
+  </ion-toolbar>
+  </ion-navbar>
+</ion-header>
+<ion-content>
+
+   <form (ngSubmit)="add()">
+    <ion-item>
+      <ion-input  [(ngModel)]="parte.nome" name="nome" type="text" placeholder="Nome da parte, ex: Cabeça, Tronco, Pé"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-input  [(ngModel)]="parte.descricao" name="descricao" type="text" placeholder="Descrição da parte"></ion-input>
+    </ion-item>
+    <button ion-button block type="submit" >Cadastrar</button>
+  </form>
+</ion-content>

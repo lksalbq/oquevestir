@@ -23,6 +23,7 @@ export class SqlStorage {
     tryInit() {
     	//this.query('ALTER TABLE _roupas ADD COLUMN img_roupa text');
         this.query('CREATE TABLE IF NOT EXISTS _roupas (id integer not null, value text not null, status_cesto boolean not null,img_roupa text, PRIMARY KEY(id))')
+        this.query('CREATE TABLE IF NOT EXISTS _partes (id integer not null, nome text not null, descricao text not null, PRIMARY KEY(id))')
         .catch(err => {
             console.error('Unable to create initial storage tables', err.tx, err.err);
         });
@@ -73,15 +74,39 @@ export class SqlStorage {
         return this.query('insert into _roupas(id,value,status_cesto,img_roupa) values (?,?,?,?)', [null,value,statusCesto,imgRoupa]);
     }
 
+    /** SET the value in the database for the given key. */
+    setParte(nome: string, descricao: string): Promise<any> {
+        return this.query('insert into _partes(id,nome,descricao) values (?,?,?)', [null,nome,descricao]);
+    }
+
     /** REMOVE the value in the database for the given key. */
     remove(id: number): Promise<any> {
         return this.query('delete from _roupas where id = ?', [id]);
     }
 
+        /** REMOVE the value in the database for the given key. */
+    removeParte(id: number): Promise<any> {
+        return this.query('delete from _partes where id = ?', [id]);
+    }
+
+
     getAll(): Promise<any>{
     	return this.query('SELECT * from _roupas',[]).then(data => {
     		if (data.res.rows.length > 0) {
                 return data;
+            }else{
+                return 0;
+            }
+        });
+
+    }
+
+    getAllPartes(): Promise<any>{
+        return this.query('SELECT * from _partes',[]).then(data => {
+            if (data.res.rows.length > 0) {
+                return data;
+            }else{
+                return 0;
             }
         });
 
