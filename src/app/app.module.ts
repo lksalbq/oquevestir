@@ -20,10 +20,14 @@ import {ModalCategoriaRegister} from '../pages/categoria/modal-categoria-registe
 import {ListCategoriaPage} from '../pages/categoria/list-categoria-page';
 import {ModalEditCategoria} from '../pages/categoria/modal-edit-categoria';
 
+import {ModalOpcaoRegister} from '../pages/opcao/modal-opcao-register';
+
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { SQLite } from '@ionic-native/sqlite';
 import { SqlStorage } from '../providers/sql-storage';
+
+
 
 @NgModule({
   declarations: [
@@ -40,7 +44,8 @@ import { SqlStorage } from '../providers/sql-storage';
     Categoria,
     ModalCategoriaRegister,
     ListCategoriaPage,
-    ModalEditCategoria
+    ModalEditCategoria,
+    ModalOpcaoRegister
   ],
   imports: [
     BrowserModule,
@@ -62,7 +67,8 @@ import { SqlStorage } from '../providers/sql-storage';
     Categoria,
     ModalCategoriaRegister,
     ListCategoriaPage,
-    ModalEditCategoria
+    ModalEditCategoria,
+    ModalOpcaoRegister
   ],
   providers: [
     StatusBar,

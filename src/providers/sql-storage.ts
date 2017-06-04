@@ -21,10 +21,11 @@ export class SqlStorage {
     }
 
     tryInit() {
-    	//this.query('ALTER TABLE _roupas ADD COLUMN parte text');
-        this.query('CREATE TABLE IF NOT EXISTS _roupas (id integer not null, value text not null, status_cesto boolean not null,img_roupa text,parte text,categoria text, PRIMARY KEY(id))')
-        this.query('CREATE TABLE IF NOT EXISTS _partes (id integer not null, nome text not null, descricao text not null, PRIMARY KEY(id))')
+    	//this.query('ALTER TABLE _roupas ADD COLUMN categoria text');
+        this.query('CREATE TABLE IF NOT EXISTS _roupas(id integer not null, value text not null, status_cesto boolean not null,img_roupa text,parte text,categoria text, PRIMARY KEY(id))')
+        this.query('CREATE TABLE IF NOT EXISTS _partes(id integer not null, nome text not null, descricao text not null, PRIMARY KEY(id))')
         this.query('CREATE TABLE IF NOT EXISTS _categorias(id integer not null, nome text not null, descricao text not null,parte text, PRIMARY KEY(id))')
+        this.query('CREATE TABLE IF NOT EXISTS _opcoes(id integer not null,roupas_id text, descricao text,tipo text, PRIMARY KEY(id))')
         .catch(err => {
             console.error('Unable to create initial storage tables', err.tx, err.err);
         });

@@ -8,12 +8,9 @@
 </ion-header>
 
 <ion-content padding>
-  <h3>O aplicativo que gerencia as suas roupas!</h3>
-
-  
  <!--  <button ion-button secondary full menuToggle>Toggle Menu</button> -->
 
-  <button ion-button secondary full (click)="ListRoupa()">
+<!--   <button ion-button secondary full (click)="ListRoupa()">
        Roupas
   </button>
 
@@ -22,5 +19,10 @@
   </button>
   <button ion-button secondary full (click)="Categoria()">
        Categoria
-  </button>
+  </button> -->
+
+  <ion-fab bottom right>
+    <button ion-fab mini (click)="Opcao()"><ion-icon name="add"></ion-icon></button>
+  </ion-fab>
+  
 </ion-content>
