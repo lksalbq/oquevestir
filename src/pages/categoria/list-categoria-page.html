@@ -9,8 +9,9 @@
   <ion-list>
     <ion-item-sliding *ngFor="let categoria of categorias">
       <ion-item  class="item item-block item-md" >
-          {{categoria?.nome}}
-          <p>{{categoria?.descricao}}</p>
+        {{categoria?.nome}}
+        <p>{{categoria?.descricao}}</p>
+        <ion-badge item-right>{{categoria?.parte}}</ion-badge>
         <ion-note item-right>
           <ion-icon name="ios-arrow-dropright-outline">
           </ion-icon>

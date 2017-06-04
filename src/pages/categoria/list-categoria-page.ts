@@ -46,10 +46,12 @@ export class ListCategoriaPage {
           let id = data.res.rows.item(i).id;
           let nome = data.res.rows.item(i).nome;
           let descricao = data.res.rows.item(i).descricao;
+          let parte = data.res.rows.item(i).parte;
           this.categorias.push({
              id: id,
              nome: nome,
-             descricao: descricao
+             descricao: descricao,
+             parte: parte
           });
         }
       }else{

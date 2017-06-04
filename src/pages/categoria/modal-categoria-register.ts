@@ -27,8 +27,8 @@ export class ModalCategoriaRegister {
     this.getPartes();
 	}
   public add() {
-    console.log(this.categoria["nome"]+ " | " +this.categoria["descricao"])
-    this.sqlStorage.setCategoria(this.categoria["nome"],this.categoria["descricao"]);
+    console.log(this.categoria["nome"]+ " | " +this.categoria["descricao"] + " | "+this.categoria["parte"])
+    this.sqlStorage.setCategoria(this.categoria["nome"],this.categoria["descricao"],this.categoria["parte"]);
     this.dismiss();
     this.presentToast();
   }

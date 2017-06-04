@@ -92,8 +92,8 @@ export class SqlStorage {
     }
 
     /** SET the values in the database for the given key. */
-    setCategoria(nome: string, descricao: string): Promise<any> {
-        return this.query('insert into _categorias(id,nome,descricao) values (?,?,?)', [null,nome,descricao]);
+    setCategoria(nome: string, descricao: string, parte: string): Promise<any> {
+        return this.query('insert into _categorias(id,nome,descricao,parte) values (?,?,?,?)', [null,nome,descricao,parte]);
     }
     /** REMOVE roupa in the database for the given key. */
     remove(id: number): Promise<any> {
