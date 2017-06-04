@@ -18,7 +18,8 @@ export class ModalRegisterPage {
   options:any;
   roupa = {};
   public base64Image: string;
-
+  partesRoupa: Array<Object>;
+  categoriasRoupa: Array<Object>;
   constructor( 
     public params: NavParams,
     public platform: Platform,
@@ -29,16 +30,57 @@ export class ModalRegisterPage {
     public toastCtrl: ToastController,
     public sqlStorage: SqlStorage
     ) { 
-
-     this.base64Image = "https://placehold.it/150x150";
-     this.roupa["statusCesto"] = true;
+      this.getPartes();
+      this.getCategorias();
+      this.base64Image = "http://images.all-free-download.com/images/graphiclarge/clothes_icon_311340.jpg";
+      this.roupa["statusCesto"] = true;
 
 	}
 
   public add() {
-    this.sqlStorage.set(this.roupa["descricao"],this.roupa["statusCesto"],this.base64Image);
+    this.sqlStorage.set(this.roupa["descricao"],this.roupa["statusCesto"],this.base64Image,this.roupa["parte"],this.roupa["categoria"]);
     this.dismiss();
     this.presentToast();
+  }
+
+   public getPartes(){
+    this.sqlStorage.getAllPartes().then(data =>{
+      this.partesRoupa = [];
+      let hasData = data == 0 ? 0 : 1;
+      if (hasData >= 1){
+        for(let i = 0; i <= data.res.rows.length; i++){
+          let id = data.res.rows.item(i).id;
+          let nome = data.res.rows.item(i).nome;
+          let descricao = data.res.rows.item(i).descricao;
+          this.partesRoupa.push({
+             id: id,
+             nome: nome,
+             descricao: descricao,
+          });
+        }
+      }
+    })
+  }
+
+  public getCategorias() {
+    this.sqlStorage.getAllCategorias().then(data =>{
+      this.categoriasRoupa = [];
+      let hasData = data == 0 ? 0 : 1;
+      if (hasData >= 1){
+        for(let i = 0; i <= data.res.rows.length; i++){
+          let id = data.res.rows.item(i).id;
+          let nome = data.res.rows.item(i).nome;
+          let descricao = data.res.rows.item(i).descricao;
+          let parte = data.res.rows.item(i).parte;
+          this.categoriasRoupa.push({
+             id: id,
+             nome: nome,
+             descricao: descricao,
+             parte: parte
+          });
+        }
+      }
+    })
   }
 
 	public takePicture(){

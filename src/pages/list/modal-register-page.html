@@ -18,15 +18,11 @@
 </ion-header>
 <ion-content>
 
-   <form (ngSubmit)="add()">
+   <form (ngSubmit)="add()"  class="card-background-page">
     <ion-item>
       <ion-label> Parte da Roupa </ion-label>
       <ion-select name="parte" [(ngModel)]="roupa.parte">
-        <ion-option name="tronco" value="tronco">Tronco</ion-option>
-        <ion-option name="pernas" value="pernas">Pernas</ion-option>
-        <ion-option name="pe" value="pe">Pé</ion-option>
-        <ion-option name="cabeça" value="cabeça">Cabeça</ion-option>
-        <ion-option name="bracos" value="bracos">Braços</ion-option>
+        <ion-option *ngFor="let parte of partesRoupa" value="{{parte.nome}}">{{parte.nome}}</ion-option>
       </ion-select>
     </ion-item>
 
@@ -34,11 +30,7 @@
     <ion-item>
       <ion-label> Categoria </ion-label>
       <ion-select name="categoria" [(ngModel)]="roupa.categoria">
-        <ion-option name="blusa" value="blusa">Blusa</ion-option>
-        <ion-option name="camiseta" value="camiseta">Camiseta</ion-option>
-        <ion-option name="calca" value="calca">Calça</ion-option>
-        <ion-option name="short" value="short">Short</ion-option>
-        <ion-option name="tenis" value="tenis">Tenis</ion-option>
+        <ion-option *ngFor="let categoria of categoriasRoupa" value="{{categoria.nome}}">{{categoria.nome}}</ion-option>
     </ion-select>
     </ion-item>
     <ion-item>
@@ -53,8 +45,10 @@
       <ion-icon name="ios-camera-outline"  item-right>
       </ion-icon>
     </ion-item>
-    <ion-item>  
-      <img [(ngModel)]="roupa.foto" src="{{base64Image}}" *ngIf="base64Image" width="150px" height="150px" name="foto" />
+    <ion-item>
+      <ion-card>
+        <img [(ngModel)]="roupa.foto" src="{{base64Image}}" *ngIf="base64Image" name="foto" />
+      </ion-card>
     </ion-item>
     <button ion-button block type="submit" >Cadastrar</button>
   </form>

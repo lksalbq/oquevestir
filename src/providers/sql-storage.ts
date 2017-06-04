@@ -21,8 +21,8 @@ export class SqlStorage {
     }
 
     tryInit() {
-    	//this.query('ALTER TABLE _categorias ADD COLUMN parte text');
-        this.query('CREATE TABLE IF NOT EXISTS _roupas (id integer not null, value text not null, status_cesto boolean not null,img_roupa text, PRIMARY KEY(id))')
+    	//this.query('ALTER TABLE _roupas ADD COLUMN parte text');
+        this.query('CREATE TABLE IF NOT EXISTS _roupas (id integer not null, value text not null, status_cesto boolean not null,img_roupa text,parte text,categoria text, PRIMARY KEY(id))')
         this.query('CREATE TABLE IF NOT EXISTS _partes (id integer not null, nome text not null, descricao text not null, PRIMARY KEY(id))')
         this.query('CREATE TABLE IF NOT EXISTS _categorias(id integer not null, nome text not null, descricao text not null,parte text, PRIMARY KEY(id))')
         .catch(err => {
@@ -82,8 +82,8 @@ export class SqlStorage {
 
 
     /** SET the values in the database for the given key. */
-    set(value: string, statusCesto: boolean, imgRoupa: string): Promise<any> {
-        return this.query('insert into _roupas(id,value,status_cesto,img_roupa) values (?,?,?,?)', [null,value,statusCesto,imgRoupa]);
+    set(value: string, statusCesto: boolean, imgRoupa: string, parte: string, categoria: string): Promise<any> {
+        return this.query('insert into _roupas(id,value,status_cesto,img_roupa,parte,categoria) values (?,?,?,?,?,?)', [null,value,statusCesto,imgRoupa,parte,categoria]);
     }
 
     /** SET the values in the database for the given key. */
