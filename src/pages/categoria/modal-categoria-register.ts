@@ -5,7 +5,6 @@ import { ToastController } from 'ionic-angular';
 import {SqlStorage} from '../../providers/sql-storage';
 
 
-
 @Component({
   templateUrl: 'modal-categoria-register.html',
 })
@@ -14,7 +13,7 @@ import {SqlStorage} from '../../providers/sql-storage';
 export class ModalCategoriaRegister {
 	
   categoria = {};
-
+  partesCategoria: Array<Object>;
   constructor( 
     public params: NavParams,
     public platform: Platform,
@@ -22,19 +21,37 @@ export class ModalCategoriaRegister {
     public modalCtrl: ModalController, 
     public navCtrl: NavController,
     public toastCtrl: ToastController,
-    public sqlStorage: SqlStorage
+    public sqlStorage: SqlStorage,
     ) { 
 
-
+    this.getPartes();
 	}
-
   public add() {
     console.log(this.categoria["nome"]+ " | " +this.categoria["descricao"])
     this.sqlStorage.setCategoria(this.categoria["nome"],this.categoria["descricao"]);
     this.dismiss();
     this.presentToast();
   }
-  
+
+  public getPartes(){
+    this.sqlStorage.getAllPartes().then(data =>{
+      this.partesCategoria = [];
+      let hasData = data == 0 ? 0 : 1;
+      if (hasData >= 1){
+        for(let i = 0; i <= data.res.rows.length; i++){
+          let id = data.res.rows.item(i).id;
+          let nome = data.res.rows.item(i).nome;
+          let descricao = data.res.rows.item(i).descricao;
+          this.partesCategoria.push({
+             id: id,
+             nome: nome,
+             descricao: descricao
+          });
+        }
+      }
+    })
+  }
+
   presentToast() {
     let toast = this.toastCtrl.create({
       message: 'Categoria cadastrada com sucesso!',

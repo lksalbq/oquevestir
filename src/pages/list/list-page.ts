@@ -133,6 +133,7 @@ export class ListPage {
       showCloseButton: true,
       closeButtonText: "Ok"
     });
+    this.dismiss();
     toast.present();
   }
 

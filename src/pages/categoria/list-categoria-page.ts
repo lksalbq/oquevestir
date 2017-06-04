@@ -7,6 +7,7 @@ import { AlertController } from 'ionic-angular';
 import { LoadingController } from 'ionic-angular';
 import {ModalEditCategoria} from '../categoria/modal-edit-categoria';
 
+
 @Component({
   templateUrl: 'list-categoria-page.html'
 })
@@ -14,7 +15,6 @@ import {ModalEditCategoria} from '../categoria/modal-edit-categoria';
 export class ListCategoriaPage {
 
   private categorias: Array<Object>;
-
   constructor(
     public platform: Platform,
     public navParams: NavParams,
@@ -100,8 +100,8 @@ export class ListCategoriaPage {
       showCloseButton: true,
       closeButtonText: "Ok"
     });
-    toast.present();
     this.dismiss();
+    toast.present();
   }
 
   public removeToast(){

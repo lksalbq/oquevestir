@@ -99,8 +99,8 @@ export class ListPartePage {
       showCloseButton: true,
       closeButtonText: "Ok"
     });
-    toast.present();
     this.dismiss();
+    toast.present();
   }
 
   public removeToast(){

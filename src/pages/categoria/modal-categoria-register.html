@@ -23,6 +23,12 @@
     <ion-item>
       <ion-input  [(ngModel)]="categoria.descricao" name="descricao" type="text" placeholder="Descrição da categoria"></ion-input>
     </ion-item>
+    <ion-item>
+      <ion-label> Parte da Roupa </ion-label>
+      <ion-select name="parte" [(ngModel)]="categoria.parte">
+        <ion-option *ngFor="let parte of partesCategoria" value="{{parte.nome}}">{{parte.nome}}</ion-option>
+      </ion-select>
+    </ion-item>
     <button ion-button block type="submit" >Cadastrar</button>
   </form>
 </ion-content>
