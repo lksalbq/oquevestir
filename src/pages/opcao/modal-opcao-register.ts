@@ -46,11 +46,13 @@ export class ModalOpcaoRegister {
           let statusCesto = data.res.rows.item(i).status_cesto;
           let imgRoupa = data.res.rows.item(i).img_roupa;
           let status;
-
+          let color;
           if(statusCesto === "true"){
             status = "Sujo";
+            color = 'danger'
           }else{
             status = "Limpo";
+            color = 'secondary'
           }
 
           this.roupas.push({
@@ -58,7 +60,9 @@ export class ModalOpcaoRegister {
              descricao: descricao,
              statusCestoDescription: status,
              statusCesto: statusCesto,
-             imgRoupa: imgRoupa
+             imgRoupa: imgRoupa,
+             color_status: color,
+             can_use: status === 'Sujo' ? 'true' : 'false'
           });
           
         }

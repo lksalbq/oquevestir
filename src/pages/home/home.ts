@@ -39,4 +39,6 @@ export class HomePage {
 	    //causing the nav controller to animate the new page in
 	    this.navCtrl.push(ModalOpcaoRegister);
 	}
+
+	
 }

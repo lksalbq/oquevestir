@@ -41,8 +41,8 @@ export class ListPage {
     //     id: i.toString(),
     //   });
     // }
-     this.getDataList()
-     this.presentLoading()
+     this.presentLoading();
+     this.getDataList();
   }
 
   //  itemTapped(event, roupa) {
@@ -52,6 +52,7 @@ export class ListPage {
   //   });
   // }
   presentLoading() {
+    this.getDataList();
     let loader = this.loadingCtrl.create({
       duration: 3000
     });
@@ -69,11 +70,14 @@ export class ListPage {
           let statusCesto = data.res.rows.item(i).status_cesto;
           let imgRoupa = data.res.rows.item(i).img_roupa;
           let status;
-
+          let color;
+          console.log(statusCesto)
           if(statusCesto === "true"){
             status = "Sujo";
+            color = 'danger';
           }else{
             status = "Limpo";
+            color = 'secondary'
           }
 
           this.roupas.push({
@@ -81,7 +85,8 @@ export class ListPage {
              descricao: descricao,
              statusCestoDescription: status,
              statusCesto: statusCesto,
-             imgRoupa: imgRoupa
+             imgRoupa: imgRoupa,
+             color_status: color
           });
           
         }
@@ -100,6 +105,7 @@ export class ListPage {
   public updateModal(roupa){
     let modal = this.modalCtrl.create(ModalEditPage, {"roupa": roupa});
     modal.present();
+
   }
 
   removeConfirm(id) {

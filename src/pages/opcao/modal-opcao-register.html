@@ -12,31 +12,16 @@
 </ion-header>
 <ion-content>
   <ion-list>
-    <ion-item-sliding *ngFor="let roupa of roupas">
-      <ion-item  class="item item-block item-md" >
+      <ion-item  *ngFor="let roupa of roupas">
         <ion-avatar item-left>
-          <img src="{{roupa?.imgRoupa}}">
+          <img src="{{roupa.imgRoupa}}">
         </ion-avatar>
-
-          {{roupa?.descricao}}
-          <p>{{roupa?.statusCestoDescription}}</p>
+         <ion-label> {{roupa.descricao}}
+          <ion-badge color="{{roupa?.color_status}}" item-right>{{roupa?.statusCestoDescription}}</ion-badge>
+          </ion-label>
         <ion-note item-right>
-          <ion-icon name="ios-arrow-dropright-outline" >
-            
-          </ion-icon>
+          <ion-checkbox disabled="{{roupa?.can_use}}"></ion-checkbox>
         </ion-note>
       </ion-item>
-      <ion-item-options side="right">
-          <button ion-button (click)="updateModal(roupa)">
-             <ion-icon name="archive"></ion-icon>
-              Atualizar
-          </button>
-          <button ion-button color="danger" (click)="removeConfirm(roupa.id)">
-              <ion-icon name="ios-close-circle-outline"></ion-icon>
-              Remover
-          </button>
-      </ion-item-options>
-      
-    </ion-item-sliding>
   </ion-list>
 </ion-content>
