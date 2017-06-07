@@ -77,7 +77,7 @@ export class ModalOpcaoRegister {
     })
   }
 
-  disableSamePartes(roupa){
+  disableSameCategories(roupa){
     var hasRoupa = false;
     var hasDisabled = false;
 
@@ -89,7 +89,10 @@ export class ModalOpcaoRegister {
           for(var j=0; j < this.selectedRoupas.length; j++){
                for(var k = 0; k <  this.roupas.length; k++){
                    if((this.selectedRoupas[j].categoria === this.roupas[k].categoria) && (this.selectedRoupas[j].id !== this.roupas[k].id)){
-                      this.roupas[k].cant_use = false;
+                      console.log(this.roupas[k].color_status)
+                      if(this.roupas[k].color_status !== "danger"){
+                         this.roupas[k].cant_use = false;
+                      }
                    }
                }      
           }

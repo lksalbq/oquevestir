@@ -21,7 +21,7 @@
         </ion-label>
           <ion-badge color="{{roupa?.color_status}}" item-right>{{roupa?.statusCestoDescription}}</ion-badge>
         <ion-note item-right>
-          <ion-checkbox disabled="{{roupa?.cant_use}}" [checked]="selected" (ionChange)="disableSamePartes(roupa)"></ion-checkbox>
+          <ion-checkbox disabled="{{roupa?.cant_use}}" [checked]="selected" (ionChange)="disableSameCategories(roupa)"></ion-checkbox>
         </ion-note>
       </ion-item>
   </ion-list>

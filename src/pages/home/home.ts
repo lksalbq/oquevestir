@@ -13,18 +13,22 @@ import { LoadingController } from 'ionic-angular';
 export class HomePage {
 	options: string = "optionsList";
 	private roupas: Array<Object>;
-
+	loading : any;
 	constructor(public platform: Platform,
 				public navCtrl: NavController,
 				public sqlStorage: SqlStorage,
 				public toastCtrl: ToastController,
 				public loadingCtrl: LoadingController) {
-		this.initialize();
+
+		this.navCtrl = navCtrl;
+		//this.initialize();
 	}
 	
-	ionViewWillEnter() { 
-       return this.getDataList();
-    }
+	ionViewCanEnter() {
+	    // Starts the process 
+	    this.initialize();
+  	}
+
 
 	initialize(){
 	  	this.presentLoading();
@@ -38,13 +42,17 @@ export class HomePage {
 
 	presentLoading() {
 	    let loader = this.loadingCtrl.create({
-	      duration: 3000
+	      content: "Aguarde..."
 	    });
 	    loader.present();
+
+	    this.getAsyncData(loader)
   	}
 
-	public getDataList() {
-	    this.sqlStorage.getAll().then(data =>{
+  private getAsyncData(loader) {
+
+    setTimeout(() => {
+      	this.sqlStorage.getAll().then(data =>{
 	      this.roupas = [];
 	      let hasData = data == 0 ? 0 : 1;
 	      if (hasData >= 1){
@@ -75,11 +83,12 @@ export class HomePage {
 	          });
 	          
 	        }
-	      }else{
-	        this.warningToast();
 	      }
-    })
+		})
+		loader.dismiss();
+    }, 5000);
   }
+
 
   public warningToast() {
     let toast = this.toastCtrl.create({
