@@ -13,8 +13,6 @@ import {Categoria} from '../pages/categoria/categoria';
 export class MyApp {
   @ViewChild(Nav) nav: Nav;
 
-  rootPage: any = HomePage;
-
   pages: Array<{title: string, component: any}>;
 
   constructor(public platform: Platform, 
@@ -32,14 +30,15 @@ export class MyApp {
     ];
 
   }
+  
 
   initializeApp() {
-    this.platform.ready().then(() => {
+      this.platform.ready().then(() => {
       // Okay, so the platform is ready and our plugins are available.
       // Here you can do any higher level native things you might need.
       this.statusBar.styleDefault();
       this.splashScreen.show();
-      this.sqlStorage
+      this.sqlStorage;
       this.splashScreen.hide();
     });
   }
@@ -49,4 +48,6 @@ export class MyApp {
     // we wouldn't want the back button to show in this scenario
     this.nav.setRoot(page.component);
   }
+
+  rootPage: any = HomePage;
 }

@@ -10,8 +10,7 @@ export class SqlStorage {
 
     constructor(public platform: Platform, public sqlite: SQLite) {
 
-        this.platform.ready().then(() => {
-
+        this.platform.ready().then(() => {    
             this.sqlite.create({ name: this.DB_NAME, location: 'default' })
                 .then((db: SQLiteObject) => {
                     this.storage = db;

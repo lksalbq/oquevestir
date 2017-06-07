@@ -16,11 +16,12 @@
         <ion-avatar item-left>
           <img src="{{roupa.imgRoupa}}">
         </ion-avatar>
-         <ion-label> {{roupa.descricao}}
+        <ion-label> 
+          {{roupa.descricao}}
+        </ion-label>
           <ion-badge color="{{roupa?.color_status}}" item-right>{{roupa?.statusCestoDescription}}</ion-badge>
-          </ion-label>
         <ion-note item-right>
-          <ion-checkbox disabled="{{roupa?.can_use}}"></ion-checkbox>
+          <ion-checkbox disabled="{{roupa?.cant_use}}" [checked]="selected" (ionChange)="disableSamePartes(roupa)"></ion-checkbox>
         </ion-note>
       </ion-item>
   </ion-list>

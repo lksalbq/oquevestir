@@ -5,21 +5,55 @@
     </button>
     <ion-title>O que Vestir?</ion-title>
   </ion-navbar>
+  <ion-toolbar no-border-top>
+    <ion-segment [(ngModel)]="options">
+        <ion-segment-button value="optionsList">
+          Opções
+        </ion-segment-button>
+        <ion-segment-button value="optionsGenerate">
+          Gerar Opções
+        </ion-segment-button>
+      </ion-segment>
+    </ion-toolbar>
 </ion-header>
 
-<ion-content padding>
- <!--  <button ion-button secondary full menuToggle>Toggle Menu</button> -->
+<ion-content padding class="cards-bg social-cards">
+  <div [ngSwitch]="options">
+    <ion-list *ngSwitchCase="'optionsList'">
+      <ion-card *ngFor="let roupa of roupas">
+        <ion-item >
+          <ion-avatar item-start>
+               <img src="{{roupa?.imgRoupa}}">
+          </ion-avatar>
+          <h2>{{roupa?.descricao}}</h2>
+          <ion-badge color="{{roupa?.color_status}}" item-right>{{roupa?.statusCestoDescription}}</ion-badge>
+        </ion-item>
+        <ion-row>
+          <ion-col>
+            <button ion-button icon-left clear>
+              <ion-icon name="log-in"></ion-icon>
+              <div>Usar</div>
+            </button>
+          </ion-col>
+          <ion-col>
+            <button ion-button icon-left clear>
+              <ion-icon name="return-left"></ion-icon>
+              <div>Devolver</div>
+            </button>
+          </ion-col>
+        </ion-row>
+      </ion-card>  
+    </ion-list>
 
-<!--   <button ion-button secondary full (click)="ListRoupa()">
-       Roupas
-  </button>
-
-  <button ion-button secondary full (click)="Parte()">
-       Parte
-  </button>
-  <button ion-button secondary full (click)="Categoria()">
-       Categoria
-  </button> -->
+    <ion-list *ngSwitchCase="'optionsGenerate'">
+      <ion-item>
+        <ion-thumbnail item-start>
+            <ion-icon name="boat"></ion-icon>
+        </ion-thumbnail>
+        <h2>Barcoooo 2222222</h2>
+      </ion-item>
+    </ion-list>
+  </div>
 
   <ion-fab bottom right>
     <button ion-fab mini (click)="Opcao()"><ion-icon name="add"></ion-icon></button>
