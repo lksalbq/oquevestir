@@ -5,6 +5,7 @@ import { ToastController } from 'ionic-angular';
 import {SqlStorage} from '../../providers/sql-storage';
 import { LoadingController } from 'ionic-angular';
 
+
 @Component({
   templateUrl: 'modal-opcao-register.html',
 })
@@ -24,17 +25,29 @@ export class ModalOpcaoRegister {
     public navCtrl: NavController,
     public toastCtrl: ToastController,
     public sqlStorage: SqlStorage,
-    public loadingCtrl: LoadingController
+    public loadingCtrl: LoadingController,
     ) { 
     this.presentLoading();
     this.getRoupas();
     //this.selectedItem = params.get('roupa');
 	}
   public add() {
-    // console.log(this.categoria["nome"]+ " | " +this.categoria["descricao"] + " | "+this.categoria["parte"])
-    // this.sqlStorage.setCategoria(this.categoria["nome"],this.categoria["descricao"],this.categoria["parte"]);
-    // this.dismiss();
-    // this.presentToast();
+
+    console.log(this.selectedRoupas[0].categoria)
+    var roupas_id = "";
+    for(var i = 1; i <= this.selectedRoupas.length ; i++){
+
+      if (i === this.selectedRoupas.length){
+        roupas_id += this.selectedRoupas[i-1].id.toString()
+      }else{
+        roupas_id += this.selectedRoupas[i-1].id.toString() + "," 
+      }
+    }
+    console.log(roupas_id)
+    
+    this.sqlStorage.setOpcoes(roupas_id,false);
+    this.dismiss()
+    this.presentToast()
   }
 
   public getRoupas(){
@@ -89,7 +102,6 @@ export class ModalOpcaoRegister {
           for(var j=0; j < this.selectedRoupas.length; j++){
                for(var k = 0; k <  this.roupas.length; k++){
                    if((this.selectedRoupas[j].categoria === this.roupas[k].categoria) && (this.selectedRoupas[j].id !== this.roupas[k].id)){
-                      console.log(this.roupas[k].color_status)
                       if(this.roupas[k].color_status !== "danger"){
                          this.roupas[k].cant_use = false;
                       }
@@ -129,6 +141,14 @@ export class ModalOpcaoRegister {
     }
   }
 
+  addLoading() {
+    let loader = this.loadingCtrl.create({
+      content: "Cadastrando opção...",
+      duration: 3000
+    });
+    loader.present();
+  }
+
   presentLoading() {
     let loader = this.loadingCtrl.create({
       duration: 4000
@@ -138,7 +158,7 @@ export class ModalOpcaoRegister {
 
   presentToast() {
     let toast = this.toastCtrl.create({
-      message: 'Categoria cadastrada com sucesso!',
+      message: 'Opção cadastrada com sucesso!',
       duration: 3000,
       showCloseButton: true,
       closeButtonText: "Ok"

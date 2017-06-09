@@ -20,11 +20,16 @@ export class SqlStorage {
     }
 
     tryInit() {
-    	//this.query('ALTER TABLE _roupas ADD COLUMN categoria text');
+        //this.query('DROP TABLE _opcoes');
+
+        //this.query('ALTER TABLE _opcoes REMOVE COLUMN tipo');
+
+    	//this.query('ALTER TABLE _categorias ADD COLUMN parte text');
+
         this.query('CREATE TABLE IF NOT EXISTS _roupas(id integer not null, value text not null, status_cesto boolean not null,img_roupa text,parte text,categoria text, PRIMARY KEY(id))')
         this.query('CREATE TABLE IF NOT EXISTS _partes(id integer not null, nome text not null, descricao text not null, PRIMARY KEY(id))')
         this.query('CREATE TABLE IF NOT EXISTS _categorias(id integer not null, nome text not null, descricao text not null,parte text, PRIMARY KEY(id))')
-        this.query('CREATE TABLE IF NOT EXISTS _opcoes(id integer not null,roupas_id text, descricao text,tipo text, PRIMARY KEY(id))')
+        this.query('CREATE TABLE IF NOT EXISTS _opcoes(id integer not null,roupas_id text,status_uso boolean, PRIMARY KEY(id))')
         .catch(err => {
             console.error('Unable to create initial storage tables', err.tx, err.err);
         });
@@ -95,6 +100,11 @@ export class SqlStorage {
     setCategoria(nome: string, descricao: string, parte: string): Promise<any> {
         return this.query('insert into _categorias(id,nome,descricao,parte) values (?,?,?,?)', [null,nome,descricao,parte]);
     }
+
+    /** SET the values in the database for the given key. */
+    setOpcoes(roupas_id: string, status_uso: boolean): Promise<any> {
+        return this.query('insert into _opcoes(id,roupas_id,status_uso) values (?,?,?)', [null,roupas_id,status_uso]);
+    }
     /** REMOVE roupa in the database for the given key. */
     remove(id: number): Promise<any> {
         return this.query('delete from _roupas where id = ?', [id]);
@@ -108,6 +118,11 @@ export class SqlStorage {
     /** REMOVE parte in the database for the given key. */
     removeCategoria(id: number): Promise<any> {
         return this.query('delete from _categorias where id = ?', [id]);
+    }
+
+    /** REMOVE parte in the database for the given key. */
+    removeOpcao(id: number): Promise<any> {
+        return this.query('delete from _opcoes where id = ?', [id]);
     }
 
     getAll(): Promise<any>{
@@ -140,5 +155,20 @@ export class SqlStorage {
                 return 0;
             }
         });
+    }
+
+    getAllOpcoes(): Promise<any>{
+        return this.query('SELECT * from _opcoes',[]).then(data => {
+            if (data.res.rows.length > 0) {
+                return data;
+            }else{
+                return 0;
+            }
+        });
+    }
+
+    getOpcaoRoupas(id : string){
+        return this.query('SELECT id,value,status_cesto,img_roupa,parte,categoria FROM _roupas WHERE id = ? limit 1', [id]);
+
     }
 }

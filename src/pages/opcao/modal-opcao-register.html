@@ -11,18 +11,25 @@
   </ion-navbar>
 </ion-header>
 <ion-content>
-  <ion-list>
-      <ion-item  *ngFor="let roupa of roupas">
-        <ion-avatar item-left>
-          <img src="{{roupa.imgRoupa}}">
-        </ion-avatar>
-        <ion-label> 
-          {{roupa.descricao}}
-        </ion-label>
-          <ion-badge color="{{roupa?.color_status}}" item-right>{{roupa?.statusCestoDescription}}</ion-badge>
-        <ion-note item-right>
-          <ion-checkbox disabled="{{roupa?.cant_use}}" [checked]="selected" (ionChange)="disableSameCategories(roupa)"></ion-checkbox>
-        </ion-note>
-      </ion-item>
-  </ion-list>
+  <form (ngSubmit)="add()">
+    <ion-list>
+        <ion-item  *ngFor="let roupa of roupas">
+          <ion-avatar item-left>
+            <img src="{{roupa.imgRoupa}}">
+          </ion-avatar>
+          <ion-label> 
+            {{roupa.descricao}}
+          </ion-label>
+            <ion-badge color="{{roupa?.color_status}}" item-right>{{roupa?.statusCestoDescription}}</ion-badge>
+          <ion-note item-right>
+            <ion-checkbox disabled="{{roupa?.cant_use}}" [checked]="selected" (ionChange)="disableSameCategories(roupa)"></ion-checkbox>
+          </ion-note>
+        </ion-item>
+    </ion-list>
+    <ion-row>
+      <ion-col style="text-align: center">
+        <button ion-button round type="submit" >Cadastrar</button>
+      </ion-col>
+    </ion-row>
+  </form>
 </ion-content>
