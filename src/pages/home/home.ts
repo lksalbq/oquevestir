@@ -34,6 +34,8 @@ export class HomePage {
 
 
 	initialize(){
+		this.opcoes = [] 
+
 	  	this.presentLoading();
 	}
 
@@ -72,8 +74,11 @@ export class HomePage {
 	          var id_roupa = roupasIds.split(",");
 
 	          roupas_opcoes = this.getRoupas(id_roupa)
-
 	          this.opcoes.push({
+	          	id: id_opcao,
+	          	status: statusUso === 'true' ? 'true' : null,
+	          	uso: statusUso === 'true' ? 'Em uso' : "Usar", 
+	          	return: statusUso === 'true' ? null : "true", 
 	          	roupas: roupas_opcoes
 	          })
 	        }
@@ -124,6 +129,37 @@ export class HomePage {
 	return roupas
   }
 
+  public use(id){  	
+  	this.sqlStorage.useOpcao(id).then(data =>{
+  		this.initialize();
+  	});
+
+  }
+
+  useConfirm(id){
+    let alert = this.alertCtrl.create({
+      title: 'Usar opção de roupa',
+      message: 'Você deseja usar essa opção?',
+      enableBackdropDismiss: true,
+      buttons: [
+        {
+          text: 'Cancelar',
+          role: 'cancel',
+          handler: () => {
+            console.log('cancelado');
+          }
+        },
+        {
+          text: 'Usar',
+          handler: () => {
+            this.use(id);
+          }
+        }
+      ]
+    });
+    alert.present();
+  }
+
 
   public remove(id){
     this.sqlStorage.removeOpcao(id);
@@ -134,7 +170,7 @@ export class HomePage {
   removeConfirm(id) {
     let alert = this.alertCtrl.create({
       title: 'Confirmar Exclusão',
-      message: 'Você realmente deseja excluir essa parte?',
+      message: 'Você realmente deseja excluir essa opcao?',
       enableBackdropDismiss: true,
       buttons: [
         {
@@ -164,7 +200,6 @@ export class HomePage {
     });
     toast.present();
   }
-
 
 
   public warningToast() {

@@ -125,6 +125,11 @@ export class SqlStorage {
         return this.query('delete from _opcoes where id = ?', [id]);
     }
 
+        /** REMOVE parte in the database for the given key. */
+    useOpcao(id: number): Promise<any> {
+        return this.query('UPDATE _opcoes SET status_uso = ? where id = ?', [true,id]);
+    }
+
     getAll(): Promise<any>{
     	return this.query('SELECT * from _roupas',[]).then(data => {
     		if (data.res.rows.length > 0) {

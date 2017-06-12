@@ -22,35 +22,31 @@
     <ion-list *ngSwitchCase="'optionsList'">
       <ion-card *ngFor="let opcao of opcoes">
         <ion-item *ngFor="let roupa of opcao.roupas">
-          <ion-row>
-            <ion-col >
-              <ion-avatar>
+              <ion-avatar item-left>
                    <img src="{{roupa?.imgRoupa}}">
               </ion-avatar>
-              <h2>{{roupa?.descricao}}</h2>
-            </ion-col>  
-            <ion-col col-4>
-              <ion-badge color="{{roupa?.color_status}}">
-                {{roupa?.statusCestoDescription}}
-              </ion-badge>
-            </ion-col>
-          </ion-row>
+                {{roupa?.descricao}}
+              <ion-note item-right>
+                <ion-badge color="{{roupa?.color_status}}">
+                  {{roupa?.statusCestoDescription}}
+                </ion-badge>
+              </ion-note>
         </ion-item>
           <ion-row>
             <ion-col col-4>
-              <button ion-button clear>
+              <button ion-button clear disabled="{{opcao.status}}" (click)="useConfirm(opcao.id)">
                 <ion-icon name="log-in"></ion-icon>
-                Usar
+                {{opcao.uso}}
               </button>
             </ion-col>
             <ion-col col-4>
-              <button ion-button clear>
+              <button ion-button clear disabled="{{opcao.return}}" (click)="returnConfirm(opcao.id)">
                 <ion-icon name="return-left"></ion-icon>
                 Devolver
               </button>
             </ion-col>
             <ion-col col-4>
-              <button ion-button clear (click)="removeToast()">
+              <button ion-button clear (click)="removeConfirm(opcao.id)">
                 <ion-icon name="ios-remove-circle-outline"></ion-icon>
                 Excluir
               </button>
