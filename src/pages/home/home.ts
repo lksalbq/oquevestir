@@ -161,6 +161,37 @@ export class HomePage {
   }
 
 
+  public return(id){  	
+  	this.sqlStorage.returnOpcao(id).then(data =>{
+  		this.initialize();
+  	});
+
+  }
+
+  returnConfirm(id){
+    let alert = this.alertCtrl.create({
+      title: 'Devolver opção',
+      message: 'Você deseja devolver essa opção?',
+      enableBackdropDismiss: true,
+      buttons: [
+        {
+          text: 'Cancelar',
+          role: 'cancel',
+          handler: () => {
+            console.log('cancelado');
+          }
+        },
+        {
+          text: 'Devolver',
+          handler: () => {
+            this.return(id);
+          }
+        }
+      ]
+    });
+    alert.present();
+  }
+
   public remove(id){
     this.sqlStorage.removeOpcao(id);
     this.removeToast();
